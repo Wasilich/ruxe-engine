@@ -12,10 +12,11 @@
 	    <meta name="generator" content="<?php here_generator(); ?>">
 	    <meta name="description" content="<?php here_description(); ?>">
 	    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic&subset=cyrillic' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="<?php here_themepath(); ?>/style.css" type="text/css">
-	    <script src="<?php here_themepath(); ?>/js/prefixfree.min.js"></script>
-	    <script src="<?php here_themepath(); ?>/js/jquery-1.7.2.min.js"></script>
-	    <script src="<?php here_themepath(); ?>/js/jquery.leanModal.min.js"></script><!-- Скрипт Модального окна http://leanmodal.finelysliced.com.au/ -->
+		<link rel="stylesheet" href="<?php here_urlsite(); ?>/themes/default/style.css" type="text/css">
+	    <script src="<?php here_urlsite(); ?>/themes/default/js/prefixfree.min.js"></script>
+		<link rel="stylesheet" href="<?php here_themepath(); ?>/layout.css" type="text/css">
+	    <script src="<?php here_urlsite(); ?>/themes/default/js/jquery-1.7.2.min.js"></script>
+	    <script src="<?php here_urlsite(); ?>/themes/default/js/jquery.leanModal.min.js"></script><!-- Скрипт Модального окна http://leanmodal.finelysliced.com.au/ -->
 	    <script src="<?php here_themepath(); ?>/js/main.js"></script>
 		<!--[if lt IE 9]>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -73,12 +74,10 @@
                 <div class="content">
                     <h1>Девиз вашего сайта, <span class="color">или слоган!</span></h1>
                     <p class="lead">Этот сайт построен на CMS Ruxe-Engine!</p>
-                    <a name="angle" href="#article" class="fa fa-angle-down page-scroll"></a>
                 </div>
             </div>
         </section>
         <!-- Основное содержание страницы -->
-		<a id="article"></a>
 		<div class="spacer"></div>
         <div class="group-100">
             <div class="group-60-offset-20">
