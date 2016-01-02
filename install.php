@@ -16,7 +16,7 @@
  *
  */
 
-$installer_version = '1.8.5';
+$installer_version = '1.8.6';
 
 include('conf/config.php');
 include("includes/core.php");
@@ -991,8 +991,7 @@ echo '</div>
                <br><br>
 	       Обратите внимание - Ruxe Engine работает <b>только</b> в UTF-8 (без BOM) кодировке. При изменении страниц или шаблонов внешним редактором (не из админ-центра), сохраняйте в UTF-8 (без BOM) кодировке.
 	       <br><br>
-               <center><a style="font-size:14pt;" href="rpanel/">Перейти в админ-центр</a><font style="font-size:14pt;"><br>('.$site.'/rpanel/)<br></font><br>
-                <a style="font-size:14pt;" href="./">Или на главную страницу</a></center>
+               <center><a style="font-size:14pt;" href="rpanel/">Перейти в админ-центр</a><font style="font-size:14pt;"><br>('.$site.'/rpanel/)<br></font>
                 <br><br><br><div style="border: 1px solid silver; background-color:#FFF2D7; text-align:center; margin-left:90px; margin-right:90px;"><b>
                 Ruxe Engine БЕСПЛАТНАЯ программа. Если Вы заплатили за неё деньги,<br>
                 требуйте у продавца вернуть Ваши деньги обратно.<br><br>
