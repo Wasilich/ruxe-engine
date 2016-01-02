@@ -1,7 +1,9 @@
 <h2>Вопросы и ответы</h2>
+<hr>
 <br>
 	<?php here_faq(); ?>
     <h4>Задать свой вопрос</h4>
+    <hr>
+    <br>
     <?php here_question(); ?>
-	<p>Просмотров страницы: <?php here_show_views('test'); ?></p>
 <br>
