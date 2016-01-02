@@ -16,7 +16,7 @@
  *
  */
 
-$this_version = '1.8.5';
+$this_version = '1.8.6';
 
 class Filtr
 {
@@ -72,7 +72,7 @@ class Filtr
   				$cou = array(5,10,25,50,75,100,125,150,175,200);
   				break;
   			case 'newpm':
-  				$cou = array(5,10,25,50,75,100,125,150,175,200,225,250,275,300,350,400,500,550,600,700);
+  				$cou = array(125,300,500,700,1000,1500,2000,5000);
   				break;
   			default:
   				$cou = array(3,4,5,10,15,20,25,30,35,40,45,50);
@@ -303,6 +303,24 @@ class Filtr
 };
 
 $Filtr	=	new Filtr;
+
+$foundedpage = false;
+$pages       = file(__DIR__."/../conf/pages/config");
+(isset($_GET['viewpage'])) ? $viewpage = $Filtr->clear($_GET['viewpage']) : $viewpage = "index";
+foreach ($pages as $onepage)
+{
+	$opa    = explode("|",$onepage);
+	if ($viewpage == $opa[0])
+	{
+		$pagetitle   = $opa[1];
+		$pagedesc    = $opa[3];
+		$pagekeys    = $opa[2];
+		$foundedpage = true;
+		$openpage    = $opa[4];
+		$cms_theme   = is_dir(__DIR__.'/../themes/'.$opa[5].'/')?$opa[5]:$cms_theme;
+		break;
+	};
+};
 
 //if (!defined("ADMINCENTER")) {
 	$toinclude	=	array('other.php','users.php');
@@ -1909,7 +1927,7 @@ class RuxeTemplate
 	
 	function usebbcodes($text,$do,$imgteg=false,$needcenz=true)
 	{
-		global $cms_smiles, $GlobalUsers, $lcms, $cms_createlinks, $cms_site, $cms_cenzura, $cms_cenzura_words, $cms_theme, $cms_root, $cms_furl;
+		global $cms_smiles, $GlobalUsers, $lcms, $cms_createlinks, $cms_img_comment, $cms_site, $cms_cenzura, $cms_cenzura_words, $cms_theme, $cms_root, $cms_furl;
 		$text	=	str_replace('[dividinglinere]','|',$text);
 		switch ($do)
 		{
@@ -1988,7 +2006,7 @@ class RuxeTemplate
 							$text    = preg_replace('|\[url=(.*)\](.*)\[/url\]|Uis', "<a href=\"".$cms_site."/?action=gosite&amp;url=\${1}\" target=\"_blank\" rel=\"nofollow\">\${2}</a>", $text);
 					};
 					//img
-					if ($imgteg)
+					if ($imgteg || $cms_img_comment)
 						$text	=	preg_replace('|\[img\](.*)\[\/img\]|Uis',"<img src=\"\${1}\" border=0 alt=\"\">",$text);
 					//smiles
 					foreach ($this->getsmiles() as $smile)
