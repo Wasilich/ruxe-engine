@@ -28,6 +28,15 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 	    <script>
+            $(document).ready(function(){
+
+	        $(".btn-slide").click(function(){
+		    $("#panel").slideToggle("slow");
+		    $(this).toggleClass("actived"); return false;
+	        });
+            });
+            </script>
+	    <script>
 	        $(function() {
             $('.icon').click(function() {
     
@@ -52,22 +61,28 @@
 		</style>
 	</head>
     <body>
-
-	    <nav class="menu navbar-default">
+                <!-- Nav -->
+	<nav class="menu navbar-default">
 			<div class="group-80-offset-010">
 			    <ul>
                     <a href="#"><div class="icon fa fa-align-justify"></div></a>
-					<span class="logo pull-left color"><a href="#" title="Главная">Ruxe Engine</a></span>
+					<div class="top items pull-left color">
+					    <a href="<?php here_urlsite(); ?>" title="Главная"><li><i class="fa fa-home"></i></li></a>
+						<a href="#"><li><i class="fa fa-search btn-slide"></i></li></a>
+						<a id="go" rel="leanModal" name="signup" href="#signup"><li><i class="fa fa-sign-in"></i></li></a>
+					</div>
                     <div class="items pull-right">
-                        <a href="<?php here_urlsite(); ?>" title="Главная"><li>Главная</li></a><!--PHP функция here_urlsite(); возвращает полный адрес сайта (с http://), без / на конце.-->
-					    <a href="<?php here_urlsite(); ?>/downloads.html" title="Скачать"><li>Скачать</li></a>
+					    <a href="<?php here_urlsite(); ?>/downloads.html" title="Скачать"><li>Скачать</li></a><!--PHP функция here_urlsite(); возвращает полный адрес сайта (с http://), без / на конце.-->
 						<a href="<?php here_urlsite(); ?>/faq.html" title="F.A.Q"><li>F.A.Q</li></a>
                         <a href="<?php here_urlsite(); ?>/somepage.html" title="Ссылка"><li>Ссылка</li></a>
 					    <a href="<?php here_urlsite(); ?>/contact.html" title="Контакты"><li>Контакты</li></a>
-                    </div>
+					</div>
                 </ul>
 				<div class="clearfix"></div>
 			</div>
+			<div id="panel">
+	            <?php here_shortsearch(); ?>
+            </div>
         </nav>
 		<!-- Header -->
         <section id="header" class="text-center" role="banner">
@@ -111,7 +126,6 @@
                         <li><a href="<?php here_urlrss(); ?>" target="_blank"><i class="fa fa-rss"></i></a></li>
                         <li><a href="https://github.com/maindefine/ruxe-engine" target="_blank"><i class="fa fa-github"></i></a></li>
                         <li><a href="https://vk.com/ruxeengine" target="_blank"><i class="fa fa-vk"></i></a></li>
-					    <li><a id="go" rel="leanModal" name="signup" href="#signup"><i class="fa fa-sign-in"></i></a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
