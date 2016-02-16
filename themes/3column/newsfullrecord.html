@@ -1,0 +1,33 @@
+<article role="article">
+    <h2>{TITLE}</h2>
+	<hr>
+	<br>
+		{DESCRIPTION}
+        <div class="clear"></div>
+		<br>
+		<br>
+	<p>Опубликовал {AUTHOR} - {DATE} - {VIEWS}</p>
+        <br>
+	
+		[if_similar]
+		<p>Похожие записи:	[SIMILAR={<a href="[SIMLINK]">[SIMCAPTION]</a>}/SIMILAR]</p>
+		[/if_similar]
+		<br>
+	
+	<div class="tags">
+		[if_tags]
+		<p>Теги: [TAGS={<a href="[TAGLINK]">#[TAGCAPTION]</a> }/TAGS]</p>
+		[/if_tags]
+	</div>
+	
+	<br>
+	<h3>Комментарии</h3>
+	<hr>
+		{COMMENTFORM}
+	    {PAGES}<br>
+        {COMMENTS}
+		<div class="clearfix"></div>
+		<br>&nbsp;<br>
+        {PAGES}
+		
+</article>

@@ -83,6 +83,7 @@ http://fontawesome.ru/cheatsheet/
 }
 /**  group block ширина. Используя эти правила, можно создавать новые классы самостоятельно  **/
 [class*=group-100], [class*=block-100] {width: 100%;}
+[class*=group-96], [class*=block-96] {width: 96%;}
 [class*=group-90], [class*=block-90] {width: 90%;}
 [class*=group-80], [class*=block-80] {width: 80%;}
 [class*=group-70], [class*=block-70] {width: 70%;}
@@ -102,6 +103,7 @@ http://fontawesome.ru/cheatsheet/
 [class*=group-08], [class*=block-08] {width: 8.33333333%;}
 /**  Отступы "margin"  **/
 [class*=group-][class*=-off-00], [class*=block-][class*=-off-00] {margin-left: 0;}
+[class*=group-][class*=-off-02], [class*=block-][class*=-off-02] {margin-left: 2%;}
 [class*=group-][class*=-off-05], [class*=block-][class*=-off-05] {margin-left: 5%;}
 [class*=group-][class*=-off-08], [class*=block-][class*=-off-08] {margin-left: 8.33333333%;}
 [class*=group-][class*=-off-09], [class*=block-][class*=-off-09] {margin-left: 9.09090909%;}
@@ -120,6 +122,7 @@ http://fontawesome.ru/cheatsheet/
 [class*=group-][class*=-off-45], [class*=block-][class*=-off-45] {margin-left: 45%;}
 [class*=group-][class*=-off-50], [class*=block-][class*=-off-50] {margin-left: 50%;}
 /**  Отступы "margin" с двух сторон  **/
+[class*=group-][class*=-offset-02], [class*=block-][class*=-offset-02] {margin-left: 2%; margin-right: 2%;}
 [class*=group-][class*=-offset-05], [class*=block-][class*=-offset-05] {margin-left: 5%; margin-right: 5%;}
 [class*=group-][class*=-offset-010], [class*=block-][class*=-offset-010] {margin-left: 10%; margin-right: 10%;}
 [class*=group-][class*=-offset-12], [class*=block-][class*=-offset-12] {margin-left: 12.5%; margin-right: 12.5%;}
@@ -269,66 +272,6 @@ nav {
 	margin: 0;
 }
 /* End of Fixed menu */
-/* Media Queries */
-@media screen and (max-width: 992px) {
-[class*=group-80][class*=-offset-010] {width: 90%;margin-left: 5%; margin-right: 5%;}
-[class*=block-50] {width: 100%;margin: 0;}
-}
-@media screen and (max-width: 800px) {
-[class*=group-60][class*=-offset-20] {width: 90%;margin-left: 5%; margin-right: 5%;}
-.menu {
-    background-color: #222 !important;
-	text-align: center !important;
-	padding: 0 !important;
-	/*height:3.125em;*/
-	transition: all 0.5s;
-}
-.icon {
-    display: block;
-	height: 23px;
-	width: 24px;
-	padding: 4px;
-	border: solid 1px #59a51b;
-	margin: 1em auto;
-}
-.logo {display: none;}
-.items {
-    display: none;   
-}
-.items li {padding-left: 0;}
-.items a li {
-    display: table;
-    line-height: 4em;
-	text-align: center;
-	padding: 0 auto;
-}
-.showitems {width: 100% !important;}
-.items li:hover {
-	display: block;
-	background: #000;
-}
-}
-/**  Header  **/
-#header {
-	background: url(images/04.jpg);
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	color: #cfcfcf;
-}
-#header .overlay{
-	background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
-	height: 750px;
-	background-attachment: fixed;
-}
-#header .content {padding: 20% 0 0;}
-@media screen and (max-width: 800px) {
-#header .overlay {
-    height: 600px;
-}
-}
 .lead {line-height: 200%;}
 a.fa.fa-angle-down {
 	padding: 10px 15px;
@@ -358,7 +301,6 @@ ul.footer-social li{
 }
 #footer p{
 	font-size: 12px;
-	/*margin-top: 10px;*/
 	line-height: 3em;
 }
 #footer i.fa {
@@ -375,14 +317,6 @@ ul.footer-social li{
 	background: #59a51b;
 	border-color: #59a51b;
 	color: #fff;
-}
-@media screen and (max-width: 800px) {
-#footer .pull-right, #footer .pull-left {
-    float: none !important;
-	text-align: center !important;
-}
-#footer p {line-height: 3em;}
-#footer .pull-right, #footer .pull-left  {padding-left: 0;padding-right: 0;}
 }
 /**  Оформление форм  **/
 label {
@@ -564,7 +498,7 @@ td {text-align: left !important;}
 .comment-cell-text {line-height: 150%;}
 .fix-column {float: right;width: 150px;}
 /* Отдельные области в тексте */
-pre, listing, xmp, .code, pre p, listing p, xmp p, .code p {display:block;margin: 0.625em 0;padding: 0.5em 1em;background: #f5f5f5;overflow: auto;font-family: monospace;font-size: 90%;}
+pre, listing, xmp, .code {display:block;margin: 0.625em 0;padding: 0.5em 1em;border: solid 1px #e0e0e0;overflow: auto;font-family: monospace;font-size: 90%;}
 /* Стиль оформления цитат */
 .quote-text, .quote {font-style: italic;color: #59a51b;margin: 0.25em 0.5em 0;padding: 0.125em 0.5em 0.375em;line-height: 130%;}
 .quote-text:before, .quote:before {font-size: 1.5em;content: "\f10d";font-family: 'FontAwesome';font-style: normal;color: #59a51b;font-size: 100%;}
@@ -655,7 +589,7 @@ ul.inline li {display:inline-block;margin-right: 10px;}
 	display:none;
 }
 /* Постраничная навигация core.php стр. 3617 */
-.navy-page {display:block;}
+.navy-page {display:block;width: 100%;margin: 0.5em 0 1.75em;}
 .navy-page p {line-height:2.5em;}
 .pager a:link, .pager a:visited {
     color:#777;
@@ -678,24 +612,3 @@ ul.inline li {display:inline-block;margin-right: 10px;}
 }
 /* Дизайн надписей типа "Осталось 10000 знаков" и счётчиков */
 #info, .info, .counter {font-size:90%;line-height:120%;padding-bottom:0.5em;color:#59a51b;}
-/**  Media Queries  **/
-@media screen and (max-width: 1036px) {
-.edge {display: none;}
-.blox-80-percent {width: 100%;}
-.blox-70-percent {width: 100%;}
-.blox-45-percent {width: 100%;}
-}
-/* Media Queries */
-@media screen and (max-width: 800px) {
-#header {
-    height:600px;
-}
-.container {width: 100%;margin: 0;}
-.col-md-10 {
-	width: 100%;
-	margin-left: 0;
-}
-#footer .container .pull-left, #footer .container .pull-right {float: none;}
-#footer .container {text-align: center;}
-#footer .container p {line-height: 300%;}
-}

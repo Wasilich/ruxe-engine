@@ -1,6 +1,6 @@
 <?php
-					$cms_site              = "http://someserver/";
-					$cms_root              = "/Users/denis/webserver/ruxe-engine";
+					$cms_site              = "http://someserver";
+					$cms_root              = "/var/www/localhost/web/ruxe-engine-1";
 					$cms_gzip              = 0;
 					$cms_sendmess          = 0;
 					$cms_mail              = "admin@domain.here";
@@ -29,7 +29,7 @@
 					$cms_save_admin_ip     = "1";
 					$cms_rewrite           = 1;
 					$cms_active            = 0;
-					$cms_active_mail       = "no-reply@doman.here";
+					$cms_active_mail       = "no-reply@domain.here";
 					$cms_active_name       = "No Reply";
 					$cms_avatars           = 1;
 					$cms_upload_maxsite    = 35;
@@ -57,6 +57,7 @@
 					$cms_guestnotwrite     = 0;
 					$cms_language          = "ru";
 					$cms_createlinks       = 1;
+                                        $cms_img_comment	= 0;
 					$cms_send_mail         = "no-reply@domain.here";
 					$cms_timezone          = "+0";
 					$cms_adminm            = 0;

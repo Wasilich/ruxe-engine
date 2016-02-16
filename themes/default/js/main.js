@@ -1,5 +1,5 @@
 //
-// This is The Scripts used for Ruxe-Engine Theme
+// This is The Scripts used for Ruxe Engine Theme
 //
 
 function main() {

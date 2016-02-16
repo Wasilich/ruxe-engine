@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
@@ -357,28 +357,26 @@ function here_hided_counter_views($id = 'noidused')
        $sv_views  = file($cms_root."/conf/views.dat");
        $sv_found  = 0;
        $sv_line   = 0;
-       $new_view  = fopen($cms_root."/conf/views.dat","w");
-       flock($new_view,LOCK_EX);
-       foreach($sv_views as $sv_elemetns)
-       {
-                         $sv_elemetn=trim($sv_elemetns);
-                         $programm=explode("=",$sv_elemetn);
-                         if ($programm[0] == $id){
-                                          $sv_tmp=$programm[1];
-                                          $sv_found=1;
-                                          $sv_tmp+=1;
-                                          fwrite($new_view,$id."=".$sv_tmp."\r\n");
-                         }
-                         else
-                         {
-                                          if($programm[1]!=""){
-                                                               fwrite($new_view,$sv_views[$sv_line]);
-                                          };
-                         };
-                         $sv_line+=1;
-       };
-       flock($new_view,LOCK_UN);
-       fclose($new_view);
+    $new_view = fopen($cms_root . "/conf/views.dat", "cb");
+    flock($new_view, LOCK_EX);
+    ftruncate($new_view, 0);
+    foreach ($sv_views as $sv_elemetns) {
+        $sv_elemetn = trim($sv_elemetns);
+        $programm = explode("=", $sv_elemetn);
+        if ($programm[0] == $id) {
+            $sv_tmp = $programm[1];
+            $sv_found = 1;
+            $sv_tmp += 1;
+            fwrite($new_view, $id . "=" . $sv_tmp . "\r\n");
+        } else {
+            if ($programm[1] != "") {
+                fwrite($new_view, $sv_views[$sv_line]);
+            };
+        };
+        $sv_line += 1;
+    };
+    flock($new_view, LOCK_UN);
+    fclose($new_view);
        if ($sv_found==0)
              echo $lcms['error_222'];
 };
@@ -430,32 +428,30 @@ echo get_downloads($id);
 };
 
 
-
 function here_rotator()
 {
-global $cms_root, $cms_site,$cms_theme, $GlobalTemplate, $Navigation;
-$url_list = file($cms_root."/conf/rotator.dat");
-$last = file($cms_root."/conf/last_rotator.dat");
-$last = $last[0];
-if (count($url_list)!=0){
-   if ($last >= (count($url_list) - 1)) {
-     $last=0;
-   }
-   else
-   {
-     $last = $last + 1;
-   };
-   $tmp_url=explode("|",$url_list[$last]);
-   $ar = array("{URL}","{CODE}","{THEMEPATH}");
-   $br = array($Navigation->furl('rotator',$tmp_url[0]),$tmp_url[1],$cms_site."/themes/".$cms_theme);
-   echo $GlobalTemplate->other($ar,$br,7);
-   
-   $ll=fopen($cms_root."/conf/last_rotator.dat","w");
-   flock($ll,LOCK_EX);
-   fwrite($ll,$last);
-   flock($ll,LOCK_UN);
-   fclose($ll);
-};
+    global $cms_root, $cms_site, $cms_theme, $GlobalTemplate, $Navigation;
+    $url_list = file($cms_root . "/conf/rotator.dat");
+    $last = file($cms_root . "/conf/last_rotator.dat");
+    $last = $last[0];
+    if (count($url_list) != 0) {
+        if ($last >= (count($url_list) - 1)) {
+            $last = 0;
+        } else {
+            $last = $last + 1;
+        };
+        $tmp_url = explode("|", $url_list[$last]);
+        $ar = array("{URL}", "{CODE}", "{THEMEPATH}");
+        $br = array($Navigation->furl('rotator', $tmp_url[0]), $tmp_url[1], $cms_site . "/themes/" . $cms_theme);
+        echo $GlobalTemplate->other($ar, $br, 7);
+
+        $ll = fopen($cms_root . "/conf/last_rotator.dat", "cb");
+        flock($ll, LOCK_EX);
+        ftruncate($ll, 0);
+        fwrite($ll, $last);
+        flock($ll, LOCK_UN);
+        fclose($ll);
+    };
 };
 
 function here_record_online()
@@ -854,8 +850,9 @@ global $cms_root,$cms_site,$cms_smiles,$_GET,$_SERVER,$_POST,$lcms,
 					};
 					if ($changecounter)
 					{
-						$new_counters = fopen($cms_root."/conf/".$type."/views.dat","w");
+						$new_counters = fopen($cms_root."/conf/".$type."/views.dat","cb");
 						flock($new_counters,LOCK_EX);
+                        ftruncate($new_counters, 0);
 					};
 					$fnc = $comment;
 					$counterfinded	=	false;

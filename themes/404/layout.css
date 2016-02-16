@@ -1,0 +1,75 @@
+/**  Header  **/
+#header {
+	background: url(images/404.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+}
+#header .overlay{
+	background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
+	height: 800px;
+	background-attachment: fixed;
+}
+#header .content {padding: 15% 0 0;}
+/* Media Queries */
+@media screen and (max-width: 1036px) {
+.edge {display: none;}
+.blox-80-percent {width: 100%;}
+.blox-70-percent {width: 100%;}
+.blox-45-percent {width: 100%;}
+}
+@media screen and (max-width: 992px) {
+[class*=group-80][class*=-offset-010] {width: 90%;margin-left: 5%; margin-right: 5%;}
+[class*=block-50] {width: 100%;margin: 0;}
+}
+@media screen and (max-width: 800px) {
+[class*=group-60][class*=-offset-20] {width: 90%;margin-left: 5%; margin-right: 5%;}
+.menu {
+    background-color: #222 !important;
+	text-align: center !important;
+	padding: 0 !important;
+	transition: all 0.5s;
+}
+.icon {
+    display: block;
+	height: 23px;
+	width: 24px;
+	padding: 4px;
+	border: solid 1px #59a51b;
+	margin: 1em auto;
+}
+.logo {display: none;}
+.items {
+    display: none;   
+}
+.items li {padding-left: 0;}
+.items a li {
+    display: table;
+    line-height: 4em !important;
+	text-align: center;
+}
+.showitems {width: 100% !important;}
+.items li:hover {
+	display: block;
+	background: #000;
+}
+.container {width: 100%;margin: 0;}
+.col-md-10 {
+	width: 100%;
+	margin-left: 0;
+}
+#footer .pull-right, #footer .pull-left {
+    float: none !important;
+	text-align: center !important;
+}
+#footer .container p, #footer p {line-height: 3em;}
+#footer .pull-right, #footer .pull-left  {padding-left: 0;padding-right: 0;}
+}
+@media screen and (max-width: 800px) {
+#header, #header .overlay {
+    height: 600px;
+}
+}

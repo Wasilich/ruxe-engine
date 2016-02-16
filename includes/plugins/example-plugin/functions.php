@@ -68,3 +68,11 @@
       $pageredirect = "http://ruxe-engine.ru";
     };
   };
+
+function installExamplePlugin(){
+  // функция автоматически выполнится при активации дополнения
+}
+
+function uninstallExamplePlugin(){
+  // функция автоматически выполнится при деактивации дополнения
+}

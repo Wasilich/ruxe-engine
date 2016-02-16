@@ -157,7 +157,7 @@ $ocms[8]='
 //{ANSWER} - ответ
 $ocms[9]='
 <div class="question-table">
-    <div class="row block-100">
+    <div class="row block-100 color-bottom-bordered">
 	    <div class="block-50">
 		    <div class="content">
 			<div class="question-cell-name">
@@ -184,7 +184,7 @@ $ocms[9]='
 		</div>
 	</div>
 </div>
-<br>';
+<br>&nbsp<br>';
 
 //Оформление одной записи F.A.Q. для here_random_faq();
 //{SITE} - адрес сайта
@@ -194,10 +194,9 @@ $ocms[9]='
 //{ANSWER} - ответ
 //{THEMEPATH} - полный путь до каталога выбранной темы оформления без / на конце
 $ocms[1]='
-<div class="question-table border block-100">
-    <div class="content">
+<div class="question-table block-100">
 	<span class="color-orange"><h4>Случайный «вопрос-ответ»</h4></span>
-	<div class="row block-100 color-bottom-bordered ">
+	<div class="row block-100">
 	    <div class="question-cell-name">{NAME}:</div>
 		<div class="question-cell-text">{QUESTION}</div>
 	</div>
@@ -206,8 +205,8 @@ $ocms[1]='
 	    <div class="question-cell-name">{ADMIN}:</div>
 		<div class="question-cell-text">{ANSWER}</div>
 	</div>
-	</div>
 </div>
+<br>&nbsp;
 ';
 
 //Главное оформление модуля Каталог ссылок (записи настраиваются в $ocms[6])

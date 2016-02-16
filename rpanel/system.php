@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
@@ -208,10 +208,10 @@ Stanisov и PAT<br><br>
 <a href="http://phpforum.ru/index.php?showtopic=28607">http://phpforum.ru/index.php?showtopic=28607</a><br><br>
 <a href="http://www.kolobok.us">www.kolobok.us</a><br><br>
 <a href="http://stackoverflow.com/users/53114/gumbo" target="_blank">Gumbo</a><br><br>
-<a href="http://ruxe-engine.ru/viewprofile/Polar">Polar</a><br><br>
+<a href="http://ruxe-engine.ru/old/viewprofile/Polar">Polar</a><br><br>
 Константин Vanstorm<br><br>
 Александр freshcoder<br><br>
-<a href="http://ruxe-engine.ru/viewprofile/Buranek">Buranek</a><br><br>
+<a href="http://ruxe-engine.ru/old/viewprofile/Buranek">Buranek</a><br><br>
 Roman Mamedov<br><br>
 <a href="http://www.answerium.com/user/simplex/">Simplex</a><br><br>
 <a href="http://gv0zdik.livejournal.com/">Gv0zdik</a><br><br> 

@@ -1,22 +1,22 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
-$this_version = '1.8.6';
+$this_version = '1.9 Beta';
 
 class Filtr
 {
@@ -381,7 +381,7 @@ function errortoshow($errno,$errmsg,$file,$line)
 	        echo '<div class="error-message">
 	        <center><b>Ошибка</b></center>
 	        <p>'.$errmsg.' в файле '.$file.' на строке '.$line.'</p>
-	        <p>Пожалуйста, обратитесь по <a href="http://ruxe-engine.ru/news/problemy-i-oshibki.html" target="_blank">http://ruxe-engine.ru/news/problemy-i-oshibki.html</a> если вы уверены, что ошибка не по вашей вине</p>
+	        <p>Пожалуйста, обратитесь по <a href="http://ruxe-engine.ru/viewforum.php?f=13" target="_blank">http://ruxe-engine.ru/viewforum.php?f=13</a> если вы уверены, что ошибка не по вашей вине</p>
 	        </div>';
 	}
 }
@@ -399,7 +399,7 @@ function etswwr($errno,$errmsg,$file,$line)
 	        <center><b>Ошибка</b></center>
 	        <p>'.$errmsg.' в файле '.$file.' на строке '.$line.'</p>
 
-	        <p>Пожалуйста, обратитесь по <a href="http://ruxe-engine.ru/news/problemy-i-oshibki.html" target="_blank">http://ruxe-engine.ru/news/problemy-i-oshibki.html</a> если вы уверены, что ошибка не по вашей вине</p>
+	        <p>Пожалуйста, обратитесь по <a href="http://ruxe-engine.ru/viewforum.php?f=13" target="_blank">http://ruxe-engine.ru/viewforum.php?f=13</a> если вы уверены, что ошибка не по вашей вине</p>
 	        </div>';
 	        $error_log = fopen($cms_root."/conf/logs/errors.log","a");
 		fputs($error_log,date("d.m.y, H:i")."||".$errno."||".$errmsg."||".$file."||".$line."||".$Filtr->clear($_SERVER['REMOTE_ADDR'])."||\r\n");
@@ -1244,16 +1244,16 @@ class GlobalUsers
 	{
 		global $cms_root;
 		include($cms_root.'/conf/users/config.dat');
-		$n = fopen($cms_root.'/conf/users/config.dat','w');
-		flock($n,LOCK_EX);
-		fwrite($n,"<?php\r\n");
-		for ($i=1; $i<=7; $i++)
-		{
-			fwrite($n,"\$polecaption[".$i."] = \"".$polecaption[$i]."\";\r\n");
-			fwrite($n,"\$pole[".$i."] = \"".$pole[$i]."\";\r\n");
+		$n = fopen($cms_root . '/conf/users/config.dat', 'cb');
+		flock($n, LOCK_EX);
+        ftruncate($n, 0);
+		fwrite($n, "<?php\r\n");
+		for ($i = 1; $i <= 7; $i++) {
+			fwrite($n, "\$polecaption[" . $i . "] = \"" . $polecaption[$i] . "\";\r\n");
+			fwrite($n, "\$pole[" . $i . "] = \"" . $pole[$i] . "\";\r\n");
 		};
-		fwrite($n,"\$lastid = ".($lastid+1).";\r\n");
-		flock($n,LOCK_UN);
+		fwrite($n, "\$lastid = " . ($lastid + 1) . ";\r\n");
+		flock($n, LOCK_UN);
 		fclose($n);
 		return $lastid+1;
 	}
@@ -1290,14 +1290,14 @@ class GlobalUsers
                          		$newpoles   = $usersfruits;
                          		for ($i=0; $i<=$countpoles; $i++)
                          		{
-                                            if (strstr($usersfruits[$i],"ReStandartConst")) 
+                                            if (strstr($usersfruits[$i],"ReStandartConst"))
                                             	$newpoles[$i] = $line[$i];
                                         };
-                         
+
                          		switch ($condition)
                          		{
                                             case "pos":
-                                                       ($pos==$check) ? fwrite($new,implode("|",$newpoles)."|\r\n") : fwrite($new,$orig);  
+                                                       ($pos==$check) ? fwrite($new,implode("|",$newpoles)."|\r\n") : fwrite($new,$orig);
                                                        break;
                                             case "mail":
                                                        ($Filtr->tolower($line[2])==$Filtr->tolower($check)) ? fwrite($new,implode("|",$newpoles)."|\r\n") : fwrite($new,$orig);
@@ -1307,9 +1307,9 @@ class GlobalUsers
                                                        break;
                                             case 'id':
                                             	($line[0]==(int)$check) ? fwrite($new,implode('|',$newpoles)."|\r\n") : fwrite($new,$orig);
-                                            	break; 
+                                            	break;
                          		};
-                         		$pos++;     
+                         		$pos++;
               			};
       			}
       			else
@@ -1317,7 +1317,7 @@ class GlobalUsers
               			for ($i=0; $i<=$countpoles; $i++)
 
               			{
-                                            if (strstr($usersfruits[$i],"ReStandartConst")) 
+                                            if (strstr($usersfruits[$i],"ReStandartConst"))
                                             	$usersfruits[$i] = '';
                                 };
               			fputs($new,implode("|",$usersfruits)."|\r\n");
@@ -2084,19 +2084,42 @@ class GlobalBFG
 		};
 		if ($furl==1)
 		{
-			fwrite($newfile,"RewriteEngine On\r\nRewriteRule ^rss$ rss/\r\nRewriteRule ^rss/$ index.php?action=rss [L]\r\n");
-			fwrite($newfile,"RewriteRule ^viewprofile/(.*) index.php?action=profile&user=\$1 [QSA]\r\nRewriteRule ^link/(.*)/(.*)/ index.php?action=link&id=\$1&new=\$2 [L]\r\nRewriteRule ^go/(.*) index.php?action=go&link=\$1 [QSA]\r\nRewriteRule ^tag/(.*)/(.*) \$1/?searchtag=\$2 [QSA]\r\nRewriteRule ^gosite/(.*) index.php?action=gosite&url=\$1 [QSA]\r\nRewriteRule ^category/(.*)/(.*) \$1/?category=\$2 [QSA]\r\nRewriteRule ^rotator/(.*) index.php?action=rotator&go=\$1 [QSA]\r\nRewriteRule ^getfile/(.*) index.php?action=download&file=\$1 [QSA]\r\nRewriteRule ^pm/(.*) index.php?action=pm&do=\$1 [QSA]\r\nRewriteRule ^editprofile/ index.php?action=myprofile [QSA]\r\nRewriteRule ^restore/ index.php?action=restore [QSA]\r\nRewriteRule ^newuser/ index.php?action=newuser [QSA]\r\n");
+			fwrite($newfile,"
+RewriteEngine On
+RewriteRule ^rss$ rss/
+RewriteRule ^rss/$ index.php?action=rss [L]");
+			fwrite($newfile,"
+RewriteRule ^viewprofile/(.*) index.php?action=profile&user=\$1 [QSA]
+RewriteRule ^link/(.*)/(.*)/ index.php?action=link&id=\$1&new=\$2 [L]
+RewriteRule ^go/(.*) index.php?action=go&link=\$1 [QSA]
+RewriteRule ^tag/(.*)/(.*) \$1/?searchtag=\$2 [QSA]
+RewriteRule ^gosite/(.*) index.php?action=gosite&url=\$1 [QSA]
+RewriteRule ^category/(.*)/(.*) \$1/?category=\$2 [QSA]
+RewriteRule ^rotator/(.*) index.php?action=rotator&go=\$1 [QSA]
+RewriteRule ^getfile/(.*) index.php?action=download&file=\$1 [QSA]
+RewriteRule ^pm/(.*) index.php?action=pm&do=\$1 [QSA]
+RewriteRule ^editprofile/ index.php?action=myprofile [QSA]
+RewriteRule ^restore/ index.php?action=restore [QSA]
+RewriteRule ^newuser/ index.php?action=newuser [QSA]
+");
 			$pagesconfig = file($cms_root."/conf/pages/config");
 			foreach ($pagesconfig as $pagesline)
 			{
 				$precords = explode("|",$pagesline);
-				fwrite($newfile,"RewriteRule ^".$precords[0]."$ ".$precords[0]."/\r\nRewriteRule ^".$precords[0]."/$ index.php?viewpage=".$precords[0]." [QSA]\r\n");
+				fwrite($newfile,"
+RewriteRule ^".$precords[0]."$ ".$precords[0]."/
+RewriteRule ^".$precords[0]."/$ index.php?viewpage=".$precords[0]." [QSA]
+");
 			};
 			$bfgconfig = file($cms_root."/conf/bfg.dat");
 			foreach ($bfgconfig as $bfgline)
 			{
 				$bc = explode("|",$bfgline);
-				fwrite($newfile,"RewriteRule ^".$bc[0]."$ ".$bc[0]."/\r\nRewriteRule ^".$bc[0]."/$ ".$bc[2]."/ [L]\r\nRewriteRule ^".$bc[0]."/(.*)".$cms_rewrite_ext." index.php?viewpage=".$bc[2]."&viewnews=".$bc[0]."&record=\$1 [QSA]\r\n");
+				fwrite($newfile,"
+RewriteRule ^".$bc[0]."$ ".$bc[0]."/
+RewriteRule ^".$bc[0]."/$ ".$bc[2]."/ [L]
+RewriteRule ^".$bc[0]."/(.*)".$cms_rewrite_ext." index.php?viewpage=".$bc[2]."&viewnews=".$bc[0]."&record=\$1 [QSA]
+");
 			};
 		};
 		fclose($newfile);
@@ -3333,11 +3356,12 @@ class FileManager
                         fclose($ip_file);
                         $hosts += 1;
                         $all_hosts += 1;
-                        $all_hosts_file = fopen($cms_root."/conf/all_hosts.dat", "w");
-                        flock($all_hosts_file,LOCK_EX);
-                        fwrite($all_hosts_file, $all_hosts);
-                        flock($all_hosts_file,LOCK_UN);
-                        fclose($all_hosts_file);
+                $newAllHostsFile = fopen($cms_root . "/conf/all_hosts.dat", "cb");
+                flock($newAllHostsFile, LOCK_EX);
+                ftruncate($newAllHostsFile, 0);
+                fwrite($newAllHostsFile, $all_hosts);
+                flock($newAllHostsFile, LOCK_UN);
+                fclose($newAllHostsFile);
        		};
        		$hits_file=file($cms_root."/conf/hits.dat");
        		$all_hits_file=file($cms_root."/conf/all_hits.dat");
@@ -3345,16 +3369,20 @@ class FileManager
        		$all_hits = isset($all_hits_file[0]) ? (int)$all_hits_file[0] : 0;
        		$hits +=1;
        		$all_hits +=1;
-       		$hits_file=fopen($cms_root."/conf/hits.dat", "w");
-       		flock($hits_file,LOCK_EX);
-       		fwrite($hits_file, $hits);
-       		flock($hits_file,LOCK_UN);
-       		fclose($hits_file);
-       		$all_hits_file=fopen($cms_root."/conf/all_hits.dat", "w");
-       		flock($all_hits_file,LOCK_EX);
-       		fwrite($all_hits_file, $all_hits); 
-       		flock($all_hits_file,LOCK_UN); 
-       		fclose($all_hits_file);
+
+        $hits_file = fopen($cms_root . "/conf/hits.dat", "cb");
+        flock($hits_file, LOCK_EX);
+        ftruncate($hits_file, 0);
+        fwrite($hits_file, $hits);
+        flock($hits_file, LOCK_UN);
+        fclose($hits_file);
+
+        $all_hits_file = fopen($cms_root . "/conf/all_hits.dat", "cb");
+        flock($all_hits_file, LOCK_EX);
+        ftruncate($all_hits_file, 0);
+        fwrite($all_hits_file, $all_hits);
+        flock($all_hits_file, LOCK_UN);
+        fclose($all_hits_file);
        		if ($cms_needlog==1)
        		{
 				$logFileName = $cms_root.'/conf/logs/log.log';
@@ -3386,12 +3414,13 @@ class FileManager
 			//Запись в конце производить
 			if ($needrewriteall)
 			{
-				$new		=	fopen($cms_root.'/conf/logs/log.log','w');
-				flock($new,LOCK_EX);
-				fwrite($new,implode("",$original));
-				fwrite($new,$page."[=]".$from."[=]".$browser."[=]".$ip."[=]".$date."[=]".$whom."[=]\r\n");
-				flock($new,LOCK_UN);
-				fclose($new);
+                $new = fopen($cms_root . '/conf/logs/log.log', 'cb');
+                flock($new, LOCK_EX);
+                ftruncate($new, 0);
+                fwrite($new, implode("", $original));
+                fwrite($new, $page . "[=]" . $from . "[=]" . $browser . "[=]" . $ip . "[=]" . $date . "[=]" . $whom . "[=]\r\n");
+                flock($new, LOCK_UN);
+                fclose($new);
 			}
 			else
 			{

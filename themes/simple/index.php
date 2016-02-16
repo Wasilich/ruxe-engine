@@ -45,10 +45,11 @@
     		$('a[rel*=leanModal]').leanModal({ top : 200, closeButton: ".modal_close" });		
 			});
 	    </script>
-	    <style>
-		p {font-family: 'Open Sans', sans-serif;font-size: 16px;line-height: 1.5em;padding: 0.375em 0;}
-		li {font-family: inherit;font-size: inherit;line-height: 1.5em;}
-	    </style>
+		<style>
+		    p {font-family: 'Open Sans', sans-serif;font-size: 16px !important;line-height: 1.5em !important;padding: 0.375em 0 !important;}
+			li {font-family: inherit;font-size: inherit;line-height: 1.5em !important;}
+			#footer p {font-size: 12px !important;line-height: 3em  !important;}
+		</style>
 	</head>
     <body>
 
@@ -56,7 +57,7 @@
 			<div class="group-80-offset-010">
 			    <ul>
                     <a href="#"><div class="icon fa fa-align-justify"></div></a>
-					<span class="logo pull-left color"><a href="#" title="Главная">Ruxe-Engine</a></span>
+					<span class="logo pull-left color"><a href="#" title="Главная">Ruxe Engine</a></span>
                     <div class="items pull-right">
                         <a href="<?php here_urlsite(); ?>" title="Главная"><li>Главная</li></a><!--PHP функция here_urlsite(); возвращает полный адрес сайта (с http://), без / на конце.-->
 					    <a href="<?php here_urlsite(); ?>/downloads.html" title="Скачать"><li>Скачать</li></a>
@@ -73,7 +74,7 @@
             <div class="overlay">
                 <div class="content">
                     <h1>Девиз вашего сайта, <span class="color">или слоган!</span></h1>
-                    <p class="lead">Этот сайт построен на CMS Ruxe-Engine!</p>
+                    <p class="lead">Этот сайт построен на CMS Ruxe Engine!</p>
                 </div>
             </div>
         </section>

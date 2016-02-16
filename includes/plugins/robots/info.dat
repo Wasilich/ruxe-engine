@@ -1,0 +1,8 @@
+<?php
+ $name          = "Роботы";
+ $version       = "1.1";
+ $description   = "Редактирование списка User Agent'ов, которые Ruxe Engine будет считать роботами.<br>
+ Совместимость: <font color=\"green\"><b>Ruxe Engine 1.9</b></font>.";
+ $author        = "www.ahrameev.ru";
+ $site          = "http://ahrameev.ru";
+ $addaction     = 0;

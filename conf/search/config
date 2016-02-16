@@ -1,0 +1,12 @@
+<?php
+					$date = '06.02.16, 12:10';
+					$npage = 'index';
+					$pages_checked = 'checked';
+					$news_checked = 'checked';
+					$maxtime = '0.2';
+					$length = 150;
+					$critical = 'Поиск не завершён. Нагрузка на сервер поиском превышает допустимый предел. Попробуйте переформулировать свой запрос.';
+					$maxresults = 40;
+					$maxwords = 4;  
+					$autoupdate = 'checked';
+					

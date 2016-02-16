@@ -1,11 +1,27 @@
 <h2>Загрузки</h2>
 <hr>
 <br>
-	<h4><a href="<?php here_urlsite(); ?>/getfile/ноутпад">Notepad++</a></h4>
-	    <p>Свободный текстовый редактор для Windows с подсветкой синтаксиса большого количества языков программирования и разметки.</p>
-	<div class="info">
-	    5,3 МБ - <?php here_show_downloads('ноутпад'); ?>
-	</div>
+    <h4><a href="<?php here_urlsite(); ?>/getfile/android">Ruxe Engine на Android</a></h4>
+    <div class="info">
+        0,5 МБ - <?php here_show_downloads('android'); ?>
+    </div><br><br>
+
+    <h4><a href="<?php here_urlsite(); ?>/getfile/backuper">Small Backuper</a></h4>
+    <p>
+        Open Source утилита резервного копирования файлов и каталогов в виде Rar архивов. Приложение для архивации использует консольную версию Rar (www.rarlab.com), это означает, что на выходе получаются полноценные Rar архивы, созданные официальным архиватором. Для восстановления данных из резервной копии достаточно любого архиватора, поддерживающего формат сжатия Rar (WinRar, например). Каждый проект содержит задачи, в которых могут быть свои индивидуальные опции и исключения.
+    </p>
+    <div class="info">
+        0,4 МБ - <?php here_show_downloads('backuper'); ?>
+    </div><br><br>
+
+    <h4><a href="<?php here_urlsite(); ?>/getfile/sot">Storehouse of Tasks</a></h4>
+    <p>
+        Маленький персональный органайзер для Windows и Linux операционных систем. Он разработан для удобного ведения списка дел с указанием срока, периода повтора, приоритета и категории. Главной особенностью программы является простой и понятный интерфейс, позволяющий визуально отслеживать выполненные задачи и быстро добавлять новые.
+    </p>
+    <div class="info">
+        5 МБ - <?php here_show_downloads('sot'); ?>
+    </div><br><br>
+
 	<h4><a href="<?php here_urlsite(); ?>/getfile/keybook">Key Book Plus</a></h4>
 	    <p>Хранитель паролей с необычной системой защиты.</p>
 	<div class="info">

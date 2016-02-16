@@ -1,5 +1,5 @@
 <h2>Добро пожаловать в админ-центр Ruxe Engine</h2>
-<font class="desc">Приятной работы с Ruxe Engine</font><br><br>
+<font class="desc">Приятной работы с Ruxe Engine.</font><br><br>
 <noscript>
 	<center>
 		<table class="optionstable" border=0 cellpadding=1 cellspacing=0>
@@ -14,7 +14,7 @@
 		<tr><td colspan=2 align="center">
 			<a href="http://ruxe-engine.ru/" target="_blank">Сайт программы</a> •
 			<a href="https://github.com/maindefine/ruxe-engine/blob/master/README.md" target="_blank">Документация</a> •
-			<a href="http://ruxe-engine.ru/plugins.html" target="_blank">Дополнения</a> •
+			<a href="http://ruxe-engine.ru/viewforum.php?f=21" target="_blank">Дополнения</a> •
 			<a href="?action=system&amp;go=thanks">Благодарности</a> •
 			<a href="https://github.com/maindefine/ruxe-engine/blob/master/LICENSE-FULL-EN.txt">Лицензия</a>
 		</td></tr>{INSTALL}

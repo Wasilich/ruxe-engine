@@ -1,0 +1,24 @@
+<h2>{TITLE}</h2>
+<div id="wrapper">
+		{DESCRIPTION}
+        <div class="clear"></div>
+	<p>Опубликовал {AUTHOR} - {DATE} - {VIEWS}</p>
+	<div class="tags">
+		[if_tags]
+		Метки:
+		[TAGS={<a href="[TAGLINK]">[TAGCAPTION]</a>}/TAGS]
+		[/if_tags]
+	</div>
+	<p>
+		[if_similar]
+		Похожие записи:
+		[SIMILAR={<a href="[SIMLINK]">[SIMCAPTION]</a>}/SIMILAR]
+		[/if_similar]
+	</p>
+	<br>
+	<h4>Комментарии:</h4>
+		{COMMENTFORM}
+	<br>{PAGES}<br>
+        {COMMENTS}
+        {PAGES}
+</div>

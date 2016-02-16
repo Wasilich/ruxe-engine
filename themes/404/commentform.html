@@ -1,0 +1,158 @@
+<br>
+<noscript>
+<!-- Для вывода ошибок и предупреждений разработан отдельный стиль -->
+		<div class="error-message">
+			<b>ВКЛЮЧИТЕ ПОДДЕРЖКУ JAVASCRIPT В ВАШЕМ БРАУЗЕРЕ</b><br>
+			Для полноценной работы необходимо включить JavaScript в Вашем браузере
+		</div>
+<br>
+</noscript>
+<script type="text/javascript">
+function copyText(name) {
+  
+  if (window.getSelection) {
+     txt = window.getSelection().toString();
+  } else if (document.getSelection) {
+    txt = document.getSelection();                
+  } else if (document.selection) {
+    txt = document.selection.createRange().text;
+  }
+ if (txt == "") {txt = '[b]'+name+'[/b], ';} else {txt = "[quote="+name+"]"+txt+"[/quote]\n";};  
+ document.getElementById('mess').value+=txt;
+}
+function tag (TXT, startTag, endTag)
+{
+TXT.focus ();
+if (document.selection) with (document.selection.createRange ())
+   {
+   var t = text; text = startTag + text + endTag;
+   if (!t.length) moveEnd ('character', endTag.length * (-1)); select ();
+   }
+else if (TXT.selectionStart >= 0) with (TXT)
+   {
+   var sT = scrollTop, sL = scrollLeft, t = value,
+   stS = selectionStart, leS = selectionEnd - stS,
+   w = (startTag + t.substr (stS, leS) + endTag).length;
+   value = t.substr (0, stS) + startTag + t.substr (stS, leS) + endTag + t.substr (stS + leS);
+   if (leS) 
+   {
+     selectionStart = stS + w;
+     selectionEnd = selectionStart;
+   }
+   else
+   {
+     selectionStart = stS + startTag.length;
+     selectionEnd = selectionStart;
+   };
+   scrollTop = sT, scrollLeft = sL;
+   }
+else TXT.value += startTag + endTag;
+};
+</script>
+<div class="group-80-offset-010">
+	<form name="post" action="{URL}" method="post" role="form">
+    {HIDDENS}
+		<div class="row group-100 bottom">
+		    <div class="block-50">
+			    <div class="form-group-100">
+					    [if_user_entered]
+					    <span class="pull-left"><a href="{USERLINK}" onClick="window.open('{USERLINK}');return false;">{NAME_VALUE}</a></span>
+		                [/if_user_entered]
+		                [if_user_not_entered]
+					<label for="exampleInputName">Ваше имя</label>
+                    <input name="ruxeimya" type="text" class="form-control" id="exampleInputName" {NAME_VALUE}>
+				</div>
+			</div>
+			<div class="block-50">
+		        <div class="form-group-100">
+					    <label for="exampleInputEmail">Ваш Е-mail</label>
+                        <input maxlength=60 name="ruxemylo" type="text" class="form-control" id="exampleInputEmail" {MAIL_VALUE}>
+		                [/if_user_not_entered]
+						[if_pm_list]
+						<label for="exampleInputName">Кому</label>
+		                <select name="to" class="form-control" id="exampleInputName">{PM_TO}</select>
+                        [/if_pm_list]
+		                [if_pm_input]
+						<label for="exampleInputName">Кому</label>
+						<div class="comment-cell"><input type="text" name="to" value="{PM_TO}" maxlength=20></div>
+                        <input type="text" name="to" value="{PM_TO}" maxlength=20 class="form-control" id="exampleInputName">
+                        [/if_pm_input]
+						[if_pm]
+                        <label for="exampleInputTheme">Тема письма:</label>
+						<input type="text" name="theme" maxlength=50 class="form-control" id="exampleInputTheme">
+                        [/if_pm]
+						[if_here_mail]
+	                    <label for="exampleInputTheme">Тема письма:</label>
+						<select name="subject" class="form-control">{THEMES}</select>
+                        [/if_here_mail]
+				</div>
+			</div>
+		</div>
+		[if_can_smiles]
+        <div class="comment-row">
+            <br>&nbsp;<br>
+			<ul class="inline">
+			    <li type="button" class="btn fa fa-smile-o" title="Смайлики" onClick="if (document.getElementById('smiles').style.display=='none'){document.getElementById('smiles').style.display='block';} else {document.getElementById('smiles').style.display='none';};"></li>
+                <div class="smilestable" id="smiles">
+                    <div class="row">
+		                <div class="comment-cell smiles">
+                            [SMILES={<img alt="{SMILE}" src="{SITE}/smiles/{SMILE}.gif" onClick="tag(document.getElementById('mess'),'[{SMILE}]',''); document.getElementById('smiles').style.display='none';">}/SMILES]
+                        </div>
+	                </div>
+                </div>
+			    <li type="button" class="btn fa fa-bold" title="Жирный" onClick="tag(document.getElementById('mess'),'[b]','[/b]');"></li>
+			    <li type="button" class="btn fa fa-italic" title="Наклонный" onClick="tag(document.getElementById('mess'),'[i]','[/i]');"></li>
+			    <li type="button" class="btn fa fa-underline" title="Подчёркнутый" onClick="tag(document.getElementById('mess'),'[u]','[/u]');"></li>
+			    <li type="button" class="btn fa fa-strikethrough" title="Зачёркнутый" onClick="tag(document.getElementById('mess'),'[s]','[/s]');"></li>
+			    <li type="button" class="btn fa fa-align-left" title="Левое выравнивание" onClick="tag(document.getElementById('mess'),'[left]','[/left]');"></li>
+			    <li type="button" class="btn fa fa-align-center" title="По центру" onClick="tag(document.getElementById('mess'),'[center]','[/center]');"></li>
+                <li type="button" class="btn fa fa-align-right" title="Правое выравнивание" onClick="tag(document.getElementById('mess'),'[right]','[/right]');"></li>
+			    <li type="button" class="btn fa fa-toggle-down" title="Спойлер" onClick="tag(document.getElementById('mess'),'[spoiler=Заголовок спойлера]','[/spoiler]');"></li>
+			    <li type="button" class="btn fa fa-quote-left" title="Цитата" onClick="tag(document.getElementById('mess'),'[quote]','[/quote]');"></li>
+			    <li type="button" class="btn fa fa-lock" title="Скрыть" onClick="tag(document.getElementById('mess'),'[hide]','[/hide]');"></li>
+			    [if_pmurl]
+			    <li type="button" class="btn fa fa-link" title="Ссылка" onClick="tag(document.getElementById('mess'),'[url]','[/url]');"></li>
+			    [/if_pmurl]
+	        </ul>
+		</div>
+        [/if_can_smiles]
+		<div class="form-group-100">
+            <label for="mess">Текст сообщения</label>
+            <textarea class="form-control" id="mess" name="ruxesoobchenie" rows="3">{MESSAGE_VALUE}</textarea>
+			<br>
+            <span id="info" class="pull-right"></span>
+        </div>
+		<div class="clearfix"></div>
+		<div class="form-group-100">
+		[if_user_not_entered]
+		    <div class="comment-cell">
+				<img class="security" alt="" border=0 src="{SECURITY}"><br>
+				<label for="exampleInputCaptcha">Введите защитный код (Captcha)</label>
+                <input class="form-control" name="ruxekod" type="text" maxlength=10 id="exampleInputCaptcha">
+			</div>
+        [/if_user_not_entered]
+		</div>
+		<input type="hidden" name="from" value="{FROM}">
+		<input type="submit" name="submit" class="btn tf-btn btn-default" value="Отправить">
+    </form>
+	<div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+<br>
+
+ <script type="text/javascript">
+           function check()  {
+            var len = document.getElementById('mess').value.length; 
+            var result = {MAXMESSAGE} - len;
+            if (result<0)
+            {
+              document.getElementById('info').innerHTML = result*(-1) + " символов будет удалено"; 
+            }
+            else
+            {
+              document.getElementById('info').innerHTML = "Осталось " + result + " символов";
+            }
+            }
+            setInterval(check,100);
+ 
+ </script>

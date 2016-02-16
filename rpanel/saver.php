@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
@@ -1876,6 +1876,7 @@ if (isset($_GET['saverdo']))
 					\$cms_guestnotwrite     = ".(int)$_POST['guestnotwrite'].";
 					\$cms_language          = \"".$Filtr->clear($_POST['language'])."\";
 					\$cms_createlinks       = ".(int)$_POST['createlinks'].";
+                                        \$cms_img_comment	= ".(int)$_POST['img_comments'].";
 					\$cms_send_mail         = \"".$Filtr->clear($_POST['send_mail'])."\";
 					\$cms_timezone          = \"".$_POST['timezone']."\";
 					\$cms_adminm            = ".(int)$_POST['adminm'].";

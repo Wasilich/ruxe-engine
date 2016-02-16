@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
@@ -362,7 +362,7 @@
 				if ($new_version!=$this_version) {
 						$install .= '<tr class="titlegreen"><td colspan=2>ДОСТУПНО ОБНОВЛЕНИЕ</td></tr>
 					<tr class="greentd"><td colspan=2>У Вас установлена '.$this_version.' версия, в то время как последняя версия '.$new_version.'<br>
-					Настоятельно рекомендуется <a style="color:black; font-weight:bold;" href="http://ruxe-engine.ru/download">обновиться до новой версии</a></td></tr>';
+					Настоятельно рекомендуется <a style="color:black; font-weight:bold;" href="http://ruxe-engine.ru">обновиться до новой версии</a></td></tr>';
 				}
   			}
 
@@ -862,7 +862,7 @@
 					"{RSSTITLE}", "{PUNYCODE1}","{PUNYCODE2}","{VISUAL1}","{VISUAL2}","{SIMCOUNT}", "{FURL1}", "{FURL2}",
 					"{SHOWBFGHINTS1}","{SHOWBFGHINTS2}","{premod_mess}","{RSS_COUNT}","{WHOIS}",
 					"{WWWREDIRECT1}","{WWWREDIRECT2}","{TITLE_LENGTH}","{REG1}","{REG2}",
-					"{NAV_BACK1}","{NAV_BACK2}","{TOP_NEWS_MAX}");
+					"{NAV_BACK1}","{NAV_BACK2}","{TOP_NEWS_MAX}", "{COMMENTSSHOW1}", "{COMMENTSSHOW2}", "{IMG_COMMENTS1}", "{IMG_COMMENTS2}");
   			include("../conf/rss.dat");
   			if (isset($_GET['go']))
   				$message = "(Сохранено)";
@@ -1370,7 +1370,14 @@
   			  $REWRITE1 = "";
   			  $REWRITE2 = "selected";
   			};
-
+                        if($cms_img_comment == 1){
+                          $IMG_COMMENTS1 = "selected";
+                          $IMG_COMMENTS2 = "";
+                        }
+                        else{
+                          $IMG_COMMENTS1 = "";
+                          $IMG_COMMENTS2 = "selected";
+                        };
   			$themes = "";  
   			foreach ($FileManager->listing("../themes/",1) as $f)
   			{
@@ -1517,7 +1524,7 @@
 				$cms_rss_title,$PUNYCODE1,$PUNYCODE2,$VISUAL1,$VISUAL2,$Filtr->progress($cms_simcount,'lastposts'), $FURL1, $FURL2,
 				$SHOWBFGHINTS1,$SHOWBFGHINTS2,$cms_premod_mess,$Filtr->progress($cms_rss_count,'pm'),$cms_whois,
 				$WWWREDIRECT1,$WWWREDIRECT2, $Filtr->progress($cms_title_length,'pm'),$REG1,$REG2,
-				$NAV_BACK1,$NAV_BACK2, $Filtr->progress($cms_top_news_max));
+				$NAV_BACK1,$NAV_BACK2, $Filtr->progress($cms_top_news_max), "","", $IMG_COMMENTS1, $IMG_COMMENTS2);
   			$echooptions = $GlobalTemplate->template($ar,$br,"./theme/general.tpl");
   			$ar = array("{MENU}","{OPTIONS}");
   			if (isset($_GET['go']))
@@ -1949,7 +1956,7 @@
          		$word_wrap = ($cms_editareawp==1) ? 'true' : 'false';
          		$echooptions = '
          				<h2>Оформление сайта</h2>
-					<font class="desc">Здесь Вы можете отредактировать темы оформления<br><a href="http://ruxe-engine.ru/documentation/howcreatetheme.html" style="color:#5D5D5D;" target="_blank">Инструкция</a></font><br><br>
+					<font class="desc">Здесь Вы можете отредактировать темы оформления<br><a href="https://github.com/maindefine/ruxe-engine/blob/master/README.md#design" style="color:#5D5D5D;" target="_blank">Инструкция</a></font><br><br>
 					<center>
               					<table border=0 width="99%" cellpadding=4>
                      					<tr><td align="left" valign="top">
@@ -2306,17 +2313,42 @@
                              			$original = file("../conf/plugins.dat");
                              			$new      = fopen("../conf/plugins.dat","a");
                              			include("../includes/plugins/".$test."/info.dat");
-                             			fputs($new,$test."|".$name."|".$addaction."|\r\n");
+                                                
+                                                if(isset($install) && !function_exists($install)){
+                                                        include("../includes/plugins/".$_GET['name']."/functions.php");
+                                                        if(function_exists($install)){
+                                                                $install();
+                                                        }
+                                                }
+
+                                                $isset = false;
+                                                foreach($original as $lines){
+                                                    $line = explode("|", $lines);
+                                                    if($line[0] == $test)
+                                                        $isset = true;
+                                                }
+                             			if(!$isset)
+                                                    fputs($new,$test."|".$name."|".$addaction."|\r\n");
                              			fclose($new);
                              			break;
                         		case "off":
                              			$name     = $_GET['name'];
                              			$original = file("../conf/plugins.dat");
                              			$new      = fopen("../conf/plugins.dat","w");
+
                              			foreach ($original as $or)
                              			{
                                    			$o  = explode("|",$or);
-                                   			if ($o[0]!=$name) fwrite($new,$or);                             
+                                   			if ($o[0]!=$name){
+                                                            fwrite($new,$or); 
+                                                        }else{
+                                                            include("../includes/plugins/".$_GET['name']."/info.dat");
+                                                            if(isset($install)){
+                                                                if(function_exists($uninstall)){
+                                                                    $uninstall();
+                                                                }
+                                                            }
+                                                        }
                              			}
                              			fclose($new);
                              			break;
@@ -2484,7 +2516,7 @@
           		if ($tmp['plugins_use']==true)
           		{
           			$echooptions.='
-          				<br><font class="desc">Дополнения: (<a style="color:#5D5D5D;" href="?action=plugins">Настроить</a> | <a style="color:#5D5D5D;" href="http://ruxe-engine.ru/plugins.html">Скачать новые</a> | <a style="color:#5D5D5D;" href="http://ruxe-engine.ru/documentation/howinstallplugin.html">Как устанавливать дополнения</a> | <a style="color:#5D5D5D;" href="http://ruxe-engine.ru/documentation/howcreateplugin.html">Как создать дополнение</a>)</font><br><br>
+          				<br><font class="desc">Дополнения: (<a style="color:#5D5D5D;" href="?action=plugins">Настроить</a> | <a style="color:#5D5D5D;" href="http://ruxe-engine.ru/viewforum.php?f=21" target="_blank">Скачать новые</a> | <a style="color:#5D5D5D;" href="https://github.com/maindefine/ruxe-engine/blob/master/README.md#install-plugins" target="_blank">Как устанавливать дополнения</a> | <a style="color:#5D5D5D;" href="https://github.com/maindefine/ruxe-engine/blob/master/README.md#create-plugins" target="_blank">Как создать дополнение</a>)</font><br><br>
           				
           			';
           			$plugins      = file("../conf/plugins.dat");
@@ -2722,7 +2754,15 @@
            		break;
      	};
  	$ddd=microtime(); $ddd=((double)strstr($ddd, ' ')+(double)substr($ddd,0,strpos($ddd,' ')));
-     	echo $GlobalTemplate->template("{CREDITS}","Используя данное программное обеспечение, Вы соглашаетесь с <a href=\"https://github.com/maindefine/ruxe-engine/blob/master/LICENSE-FULL-EN.txt\" target=\"_blank\" style=\"color:white;\">Лицензионным соглашением</a>.<br>Автор, программирование: <b>Ахрамеев Денис Викторович <a style=\"color:white; font-weight:bold;\" href=\"http://den.bz\" target=\"_blank\">Includen</a></b>.<br>Дизайн: <b>Игорь</b> <a href=\"http://ruxe-engine.ru/viewprofile/Dr1D\" target=\"_blank\" style=\"color:white; font-weight: bold;\">Dr1D</a>.<br>Контроль качества, документация: <b>Олег Прохоров</b> <a href=\"http://ruxe-engine.ru/viewprofile/Tanatos\" target=\"_blank\" style=\"color:white; font-weight: bold;\">Tanatos</a>.<br>Генерация: ".number_format(($ddd-$ttt),3)." секунд.","./theme/admincenterend.tpl");
+     	echo $GlobalTemplate->template("{CREDITS}",
+			"Используя данное программное обеспечение, Вы соглашаетесь
+            с <a href=\"https://github.com/maindefine/ruxe-engine/blob/master/LICENSE-FULL-EN.txt\"
+            target=\"_blank\" style=\"color:white;\">Лицензионным соглашением</a>.<br>
+            Автор, программирование: <b>Ахрамеев Денис Викторович</b> <a style=\"color:white; font-weight:bold;\" href=\"http://ahrameev.ru\" target=\"_blank\">http://ahrameev.ru</a>.<br>
+            Темы оформления: <b>Александр Плотников</b> <a style=\"color:white; font-weight:bold;\" href=\"http://webdesign.ru.net/\" target=\"_blank\">http://webdesign.ru.net/</a>.<br>
+            Логотип, дизайн админ-центра: <b>Игорь </b> <a href=\"http://ruxe-engine.ru/old/viewprofile/Dr1D\" target=\"_blank\" style=\"color:white; font-weight: bold;\">Dr1D</a>.<br>
+            Контроль качества, документация: <b>Олег Прохоров</b> <a href=\"http://ruxe-engine.ru/old/viewprofile/Tanatos\" target=\"_blank\" style=\"color:white; font-weight: bold;\">Tanatos</a>.<br>
+            Генерация: ".number_format(($ddd-$ttt),3)." секунд.","./theme/admincenterend.tpl");
   }
   else
   {

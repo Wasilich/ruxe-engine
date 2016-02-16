@@ -8,6 +8,8 @@
  $site - адрес сайта дополнения
  $addaction - доступные значения 1 и 0. Включает и отключает соответственно использование
  промежуточных страниц для дополнения. Подробнее в комментариях к functions.php
+ $install - функция автоматически выполнится при активации дополнения
+ $uninstall - функция автоматически выполнится при деактивации дополнения
  */
  $name          = "Тестовый модуль";
  $version       = "1.0";
@@ -15,3 +17,7 @@
  $author        = "Ruxe Engine";
  $site          = "http://ruxe-engine.ru/";
  $addaction     = 1;
+
+
+ $install 	= 'installExamplePlugin';
+ $uninstall 	= 'uninstallExamplePlugin';

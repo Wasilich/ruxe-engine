@@ -6,4 +6,5 @@
     <hr>
     <br>
     <?php here_question(); ?>
+	<p>Просмотров страницы: <?php here_show_views('test'); ?></p>
 <br>

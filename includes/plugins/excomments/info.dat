@@ -1,0 +1,16 @@
+<?php
+	/*
+		INFO OF EXTENDED COMMENTS PLUGIN FOR RUXE ENGINE
+		Requirements: Ruxe Engine 1.9
+		Author: Akhrameyev Denis Viktorovich
+		Site: http://ahrameev.ru
+	*/
+	$name          = "Extended Comments";
+	$version       = "1.1";
+	$description   = "Собирает комментарии из нескольких новостей и/или разделов комментариев в одном месте. Используется как надстройка одиночных разделов комментариев: также выводит форму ввода комментариев, откуда новые комментарии поступают в выбранный одиночный раздел комментариев.<br>
+На странице, где необходимо вывести собранные комментарии, используйте команду &lt;?php here_excomments(\"ID\"); ?&gt;
+и замените ID на идентификатор расширенного раздела.<br>
+Совместимость: <font color=\"green\"><b>Ruxe Engine 1.9</b></font>";
+	$author        = "www.ahrameev.ru";
+	$site          = "http://ahrameev.ru/";
+	$addaction     = 0;

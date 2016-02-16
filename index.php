@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
@@ -128,10 +128,7 @@ if ($cms_gzip == 1)
 	return gzdeflate($output, 9);
   }
 
-  if(isset($_SERVER['HTTP_ACCEPT_ENCODING']))
-	$AE = $_SERVER['HTTP_ACCEPT_ENCODING'];
-  else
-	$AE = $_SERVER['HTTP_TE'];
+	$AE = isset($_SERVER['HTTP_ACCEPT_ENCODING']) ? $_SERVER['HTTP_ACCEPT_ENCODING'] : '';
 
   $support_gzip = (strpos($AE, 'gzip') !== FALSE) || $FORCE_COMPRESSION;
   $support_deflate = (strpos($AE, 'deflate') !== FALSE) || $FORCE_COMPRESSION;
@@ -407,13 +404,13 @@ $online_count++;
 if ($cms_needrecord == 1)
 { 
    $record_online = file($cms_root."/conf/online.dat");
-   if ($online_count>$record_online[0])
-   {
-    $record_online = fopen($cms_root."/conf/online.dat","w");
-    flock($record_online,LOCK_EX);
-    fwrite($record_online,$online_count);
-    flock($record_online,LOCK_UN);
-    fclose($record_online);
+    if ($online_count > $record_online[0]) {
+        $record_online = fopen($cms_root . "/conf/online.dat", "cb");
+        flock($record_online, LOCK_EX);
+        ftruncate($record_online, 0);
+        fwrite($record_online, $online_count);
+        flock($record_online, LOCK_UN);
+        fclose($record_online);
    };
 };
 $online_index = $online_count % 100;
@@ -421,14 +418,14 @@ if ($online_index >=11 && $online_index <= 14)
       $online_index = 0;
 else
       $online_index = ($online_index %= 10) < 5 ? ($online_index > 2 ? 2 : $online_index): 0;
-$new_online = fopen($cms_root."/conf/online_users.dat","w");
-flock($new_online,LOCK_EX);
-for ($onl=0; $onl<count($new_online_data); $onl++)
-{
-    $new_online_data[$onl] = str_replace("\r\n","",$new_online_data[$onl]);
-    fwrite($new_online,$new_online_data[$onl]."\r\n");
+$new_online = fopen($cms_root . "/conf/online_users.dat", "cb");
+flock($new_online, LOCK_EX);
+ftruncate($new_online, 0);
+for ($onl = 0; $onl < count($new_online_data); $onl++) {
+    $new_online_data[$onl] = str_replace("\r\n", "", $new_online_data[$onl]);
+    fwrite($new_online, $new_online_data[$onl] . "\r\n");
 };
-flock($new_online,LOCK_UN);
+flock($new_online, LOCK_UN);
 fclose($new_online);
 
 $pathsfile = file("conf/paths.dat");
@@ -438,24 +435,6 @@ include("includes/functions.action.php");
 
 if (!isset($_GET['action']))
 {
-	$foundedpage = false;
-	$pages       = file($cms_root."/conf/pages/config");
-	(isset($_GET['viewpage'])) ? $viewpage = $Filtr->clear($_GET['viewpage']) : $viewpage = "index";
-	foreach ($pages as $onepage)
-	{
-		$opa    = explode("|",$onepage);
-		if ($viewpage == $opa[0])
-		{
-			$pagetitle   = $opa[1];
-			$pagedesc    = $opa[3];
-			$pagekeys    = $opa[2];
-			$foundedpage = true;
-			$openpage    = $opa[4];
-			$cms_theme   = is_dir($cms_root.'/themes/'.$opa[5].'/')?$opa[5]:$cms_theme;
-			break;
-		};
-	};
-
 	if (!$foundedpage) { $openpage = "404"; $pagetitle = $lcms['page_not_found']; $pagedesc = ""; $pagekeys = " ";};
   	if ($cms_nocache==1)
   	{

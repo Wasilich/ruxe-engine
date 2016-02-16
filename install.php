@@ -1,22 +1,22 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
-$installer_version = '1.8.6';
+$installer_version = '1.9 Beta';
 
 include('conf/config.php');
 include("includes/core.php");
@@ -246,10 +246,8 @@ $addpath2 = $_SERVER['HTTP_HOST'].strtolower($addpath);
                 'captcha/fonts/warnock.png',
                 'captcha/util/font_preparer.php',
                 'captcha/util/index.php',
-                'includes/languages/.htaccess',
                 'includes/languages/ru/general.php',
                 'includes/languages/ru/admin.php',
-                'includes/plugins/.htaccess',
                 'rpanel/bfgshow.php',
                 'rpanel/check.php',
                 'rpanel/check2.php',
@@ -472,7 +470,7 @@ echo '</div>
                 "avatars/",
                 "conf/",
                 "themes/",
-                "smiles",
+                "smiles/",
                 "rpanel/backups/"
                 );
                 foreach ($FileManager->listing("avatars/",0) as $a)
@@ -653,7 +651,7 @@ echo '</div>
                 echo '<center><table class="table" cellpadding=5 width="100%" cellspacing=0 border=0>
                   <tr class="title"><td>ПАРАМЕТР</td><td>ЗНАЧЕНИЕ</td><td>ДОЛЖНО БЫТЬ</td></tr>
                   <tr><td>GD библиотека</td><td>'.$gd.'</td><td>Установлена</td></tr>
-                  <tr><td>Версия PHP</td><td>'.$ver.'</td><td>5.2.17 или новее</td></tr>
+                  <tr><td>Версия PHP</td><td>'.$ver.'</td><td>5.3 или новее</td></tr>
                   <tr><td>Параметр Register Globals</td><td>'.$rg.'</td><td>Отключён</td></tr>
                 </table></center><br>
                 ';
@@ -932,6 +930,7 @@ echo '</div>
 \$cms_guestnotwrite = ".$cms_guestnotwrite.";
 \$cms_language = \"".$language."\";
 \$cms_createlinks = ".$cms_createlinks.";
+\$cms_img_comment	= 0;
 \$cms_send_mail = \"".$cms_send_mail."\";
 \$cms_timezone = \"".$cms_timezone."\";
 \$cms_adminm = ".$cms_adminm.";
@@ -995,7 +994,7 @@ echo '</div>
                 <br><br><br><div style="border: 1px solid silver; background-color:#FFF2D7; text-align:center; margin-left:90px; margin-right:90px;"><b>
                 Ruxe Engine БЕСПЛАТНАЯ программа. Если Вы заплатили за неё деньги,<br>
                 требуйте у продавца вернуть Ваши деньги обратно.<br><br>
-                Кроме того, оригинальные и свежие дистрибутивы Ruxe Engine находятся всегда по адресу:<br><a href="http://ruxe-engine.ru/download" target="_blank">http://ruxe-engine.ru/download</a>.
+                Кроме того, оригинальные и свежие дистрибутивы Ruxe Engine находятся всегда по адресу:<br><a href="http://ruxe-engine.ru" target="_blank">http://ruxe-engine.ru</a>.
                 <br>Если у Вас есть сомнения насчёт оригинальности используемого дистрибутива, рекомендуется скачать его по вышеуказанному адресу.                                                                               
                 </b></div> 
                 <br><br>

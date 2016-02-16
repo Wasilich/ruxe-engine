@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
@@ -167,16 +167,17 @@ if ($action=="link")
                          		{
                             			setcookie('view'.$b[0].$l[6], 'viewed', time() + 1209600,"/");
                             			$views = file($cms_root."/conf/".$b[0]."/views.dat");
-                            			$newviews = fopen($cms_root."/conf/".$b[0]."/views.dat","w");
-                            			flock($newviews,LOCK_EX);
-                            			foreach ($views as $view)
-                            			{
-                                  			$vie = explode("|",$view);
-                                  			if ($vie[0]==$new) $vie[1]++;
-                                  			fwrite($newviews,$vie[0]."|".$vie[1]."|\r\n");
-                            			};
-                            			flock($newviews,LOCK_UN);
-                            			fclose($newviews);
+
+									$newviews = fopen($cms_root . "/conf/" . $b[0] . "/views.dat", "cb");
+									flock($newviews, LOCK_EX);
+                                    ftruncate($newviews, 0);
+									foreach ($views as $view) {
+										$vie = explode("|", $view);
+										if ($vie[0] == $new) $vie[1]++;
+										fwrite($newviews, $vie[0] . "|" . $vie[1] . "|\r\n");
+									};
+									flock($newviews, LOCK_UN);
+									fclose($newviews);
                          		};
 					if ($cms_punycode==1)
 					{
@@ -229,28 +230,25 @@ if ($action=="go")
    	$sv_views	=	file($cms_root."/conf/count_links.dat");
    	$sv_found	=	0;
    	$sv_line	=	0;
-   	$new_view	=	fopen($cms_root."/conf/count_links.dat","w");
-   	flock($new_view,LOCK_EX);
-   	foreach($sv_views as $sv_elemetns)
-   	{
-     		$sv_elemetn	=	trim($sv_elemetns);
-     		$programm	=	explode("=",$sv_elemetn);
-     		if ($programm[0] == $get)
-     		{
-          		$sv_tmp		=	$programm[1];
-          		$sv_found	=	1;
-          		$sv_tmp++;
-          		fwrite($new_view,$get."=".$sv_tmp."\r\n");
-     		}
-     		else
-     		{
-          		if($programm[1]!="")
-          			fwrite($new_view,$sv_views[$sv_line]);
-     		};
-     		$sv_line++;
-   	};
-   	flock($new_view,LOCK_UN);
-   	fclose($new_view);
+    $new_view = fopen($cms_root . "/conf/count_links.dat", "cb");
+    flock($new_view, LOCK_EX);
+    ftruncate($new_view, 0);
+    foreach ($sv_views as $sv_elemetns) {
+        $sv_elemetn = trim($sv_elemetns);
+        $programm = explode("=", $sv_elemetn);
+        if ($programm[0] == $get) {
+            $sv_tmp = $programm[1];
+            $sv_found = 1;
+            $sv_tmp++;
+            fwrite($new_view, $get . "=" . $sv_tmp . "\r\n");
+        } else {
+            if ($programm[1] != "")
+                fwrite($new_view, $sv_views[$sv_line]);
+        };
+        $sv_line++;
+    };
+    flock($new_view, LOCK_UN);
+    fclose($new_view);
    	$sv_downloads	=	file($cms_root."/conf/links.dat");
    	$sv_found	=	0;
    	$sv_line	=	0;
@@ -326,28 +324,25 @@ if ($action=="download")
 		$sv_views =	file($cms_root."/conf/downloads.dat");
 		$sv_found =	0;
 		$sv_line  =	0;
-		$new_view =	fopen($cms_root."/conf/downloads.dat","w");
-		flock($new_view,LOCK_EX);
-		foreach($sv_views as $sv_elemetns)
-		{
-     			$sv_elemetn	=	trim($sv_elemetns);
-     			$programm	=	explode("=",$sv_elemetn);
-     			if ($programm[0] == $get)
-     			{
-          			$sv_tmp		=	$programm[1];
-          			$sv_found	=	1;
-          			$sv_tmp		+=	1;
-          			fwrite($new_view,$get."=".$sv_tmp."\r\n");
-     			}
-     			else
-     			{
-          			if($programm[1]!="")
-          				fwrite($new_view,$sv_views[$sv_line]);
-     			};
-     			$sv_line+=1;
-		};
-		flock($new_view,LOCK_UN);
-		fclose($new_view);
+        $new_view = fopen($cms_root . "/conf/downloads.dat", "cb");
+        flock($new_view, LOCK_EX);
+        ftruncate($new_view, 0);
+        foreach ($sv_views as $sv_elemetns) {
+            $sv_elemetn = trim($sv_elemetns);
+            $programm = explode("=", $sv_elemetn);
+            if ($programm[0] == $get) {
+                $sv_tmp = $programm[1];
+                $sv_found = 1;
+                $sv_tmp += 1;
+                fwrite($new_view, $get . "=" . $sv_tmp . "\r\n");
+            } else {
+                if ($programm[1] != "")
+                    fwrite($new_view, $sv_views[$sv_line]);
+            };
+            $sv_line += 1;
+        };
+        flock($new_view, LOCK_UN);
+        fclose($new_view);
 		$sv_downloads	=	file($cms_root."/conf/paths.dat");
 		$sv_found	=	false;
 		$sv_line	=	0;
@@ -554,12 +549,13 @@ if ($action=="rotator")
 		};
 		if ($founded)
 		{
-		    	$file = fopen($cms_root."/conf/rotator_count.dat","w");
-		    	flock($file,LOCK_EX);
-                    	foreach ($new_count as $new)
-                       		fwrite($file,$new."\r\n");
-                    	flock($file,LOCK_UN);
-                    	fclose($file);
+            $file = fopen($cms_root . "/conf/rotator_count.dat", "cb");
+            flock($file, LOCK_EX);
+            ftruncate($file, 0);
+            foreach ($new_count as $new)
+                fwrite($file, $new . "\r\n");
+            flock($file, LOCK_UN);
+            fclose($file);
 		};
 		foreach ($rotators as $rotator)
 		{

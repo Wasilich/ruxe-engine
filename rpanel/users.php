@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Ruxe Engine - CMS на файлах
+ * Ruxe Engine - Понятная CMS для людей
  * http://ruxe-engine.ru
  *
- * Лицензия:
  * Это произведение доступно по Open Source лицензии
  * Creative Commons «Attribution-ShareAlike» («Атрибуция — На тех же
  * условиях») 4.0 Всемирная (CC BY-SA 4.0).
  *
  * Разработчики:
- * Ахрамеев Денис Викторович (http://den.bz) Автор, программирование
- * Игорь Dr1D - Дизайн
- * Олег Прохоров (http://ruxe-engine.ru/viewprofile/Tanatos) - Контроль качества, документация
+ * Ахрамеев Денис Викторович (http://ahrameev.ru) - Автор, программирование
+ * Александр Wasilich Плотников (http://webdesign.ru.net/) - Темы оформления
+ * Игорь Dr1D - Логотип, дизайн админ-центра
+ * Олег Прохоров (http://ruxe-engine.ru/old/viewprofile/Tanatos) - Контроль качества, документация
  *
  */
 
@@ -26,7 +26,7 @@
 				<font class="desc">В данном разделе Вы можете удалить, забанить, изменить профиль пользователей, установить статус (например, администратор или суперпользователь), обнулить счётчики сообщений, добавить новые поля профиля и страницы, доступные для просмотра только администраторам и суперпользователям</font><br><br>
 			';
 	$echooptions 	= "<center><table class=\"optionstable\" border=0 cellpadding=1 cellspacing=0>
-				<tr class=\"titletable\"><td>ИМЯ ПОЛЬЗОВАТЕЛЯ</td><td width=110>СТАТУС (<a target=\"_blank\" title=\"Помощь\" href=\"https://github.com/maindefine/ruxe-engine/blob/master/README.md#user-content-Статусы-пользователей\">?</a>)</td><td width=85>СООБЩЕНИЙ</td><td width=150>E-MAIL</td><td width=100>IP</td><td width=270>ДЕЙСТВИЕ</td></tr>
+				<tr class=\"titletable\"><td>ИМЯ ПОЛЬЗОВАТЕЛЯ</td><td width=110>СТАТУС (<a target=\"_blank\" title=\"Помощь\" href=\"https://github.com/maindefine/ruxe-engine/blob/master/README.md#user-statuses\">?</a>)</td><td width=85>СООБЩЕНИЙ</td><td width=150>E-MAIL</td><td width=100>IP</td><td width=270>ДЕЙСТВИЕ</td></tr>
 			";
 	if (isset($_GET["poles"]))
 		$mess 	= "(Сохранено)";
@@ -65,7 +65,7 @@
 					<tr><td>E-mail:</td><td><input type="text" name="mail" size=52 value="'.$p[2].'"></td></tr>
 					<tr><td>О себе:</td><td><textarea name="about" cols=40 rows=3>'.str_replace("<br>","\n",$p[3]).'</textarea></td></tr>
 					<tr><td>Подпись:</td><td><textarea name="ps" cols=40 rows=3>'.str_replace("<br>","\n",$p[17]).'</textarea></td></tr>
-					<tr><td>Звание (статус) <a title="Помощь" href="http://ruxe-engine.ru/documentation/roles.html" target="_blank">?</a>:</td><td>
+					<tr><td>Звание (статус) <a title="Помощь" href="https://github.com/maindefine/ruxe-engine/blob/master/README.md#user-statuses" target="_blank">?</a>:</td><td>
 				';
 			if ($pos!=0) {
 				$menu .='<select name="status" id="statuser" onChange="diuc()">';
