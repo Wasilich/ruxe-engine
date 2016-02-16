@@ -8,8 +8,8 @@ class MiniNews
 			fwrite($nf,'<?
 				$mininews_count		=	5;
 				$mininews_length	=	150;
-				$mininews_template	=	\'<font style="font-size:8pt;">{DATE}:</font><br>
-<div style="margin: 0px 0px 9px 15px;"><a href="{LINK}">{TITLE}</a></div>\';
+				$mininews_template	=	\'<div class="mini-news">
+<a href="{LINK}"><h5>{TITLE}</h5></a><span class="info">{DATE}, просмотров: {VIEWS}</span></div>\';
 			?>');
 			fclose($nf);
 			chmod($cms_root.'/conf/mini-news',0777);
