@@ -46,9 +46,6 @@ fa-youtube [\f167]
 fa-skype [\f17e]
 fa-pinterest-p [\f231] 
 fa-facebook [\f09a]
-.fa-folder:before {content: "\f07b";}
-.fa-list-ul:before {content: "\f0ca";}
-.fa-download:before {content: "\f019";}
 Подробнее здесь
 http://fontawesome.ru/cheatsheet/
 */
@@ -72,6 +69,8 @@ http://fontawesome.ru/cheatsheet/
 .fa-quote-left:before {content: "\f10d";}
 .fa-lock:before {content: "\f023";}
 .fa-link:before {content: "\f0c1";}
+.fa-home:before {content: "\f015";}
+.fa-search:before {content: "\f002";}
 /**  group block  **/
 [class*=group], [class*=block] {
     display: block;
@@ -147,20 +146,13 @@ http://fontawesome.ru/cheatsheet/
 .em-air {line-height: 3em;}
 .color {color: #8eda32;}
 .color-red {color: #f00;}
-/*.color-orange {color: #59a51b;}*/
 .color-bottom-bordered {border-bottom:solid 1px #8eda32;}
-.border, .bordered {border:solid 1px #e0e0e0;}
+.border {border:solid 1px #e0e0e0;}
+/* Класс bordered (будьте внимательны с цифровыми значениями, меняйте их одновременно (в примере - 1px)) */
+[class*=-bordered] {border: solid 1px #808080;}
+[class*=-bordered] + [class*=-bordered] {margin-top: -1px;}
+[class*=-bordered] p {padding: 15px 31px}
 .lightbox {float: left;margin: 0.375em 0.75em 0.25em 0;border: solid 2px #a8a8a8;}
-.clearfix {display: block;}
-* html .clearfix { height: 1%; }
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-}
 ul, ol{
 	padding: 0;
 	webkit-padding: 0;
@@ -203,7 +195,7 @@ h5{
 	line-height: 20px;
 	margin: 0 auto 0.75em;
 }
-p {font-family: 'Open Sans', sans-serif;font-size: 16px;line-height: 1.5em;padding: 0.375em 0;}
+p {font-family: 'Open Sans', sans-serif;font-size: 16px;line-height: 1.5em;padding: 16px 32px;}
 em {font-size: 1.250em;}
 .em {line-height: 1.5em;}
 a {color: #59a51b; text-decoration: none;}
@@ -254,6 +246,24 @@ nav {
     width: 100%;
     margin: 0;
 }
+.top li .fa {font-size: 16px;}
+#panel {
+	position: relative;
+	background: transparent;
+	width: 100%;
+	text-align: center;
+	padding: 12px;
+	font-size: 1em;
+	line-height: 100%;
+	display: none;
+}
+#panel input {
+	border: 0;
+	border-bottom: dotted 2px #555;
+	background: transparent;
+	color: #fff;
+}
+.actived {color: #fff;}/*#4698ea*/
 .icon {
     color: #8eda32;
     cursor: pointer;
@@ -612,3 +622,6 @@ ul.inline li {display:inline-block;margin-right: 10px;}
 }
 /* Дизайн надписей типа "Осталось 10000 знаков" и счётчиков */
 #info, .info, .counter {font-size:90%;line-height:120%;padding-bottom:0.5em;color:#59a51b;}
+[class*=mini-news] {display: block; padding: 0.5em; text-align: center;}
+[class*=mini-news] .info {color:#555;}
+[class*=mini-news] h5 {margin: 0 auto;}
